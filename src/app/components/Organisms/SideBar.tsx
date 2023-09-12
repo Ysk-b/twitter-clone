@@ -19,7 +19,6 @@ import theme from '~/app/styles/theme';
 const styles = css`
   .sidebar {
     border-right: 1px solid ${theme.colors.bg};
-    max-width: 250px;
     margin-top: 20px;
     padding: 0 20px;
     flex: .35;

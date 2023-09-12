@@ -1,11 +1,14 @@
 'use client';
 
-import React from 'react';
+import Post from '../Molecules/Post';
 import TweetBox from '../Molecules/TweetBox';
 
 import css from 'styled-jsx/css';
 import theme from '~/app/styles/theme';
-import Post from '../Molecules/Post';
+
+import db from '~/app/data/firebase';
+import { collection, getDocs } from 'firebase/firestore';
+import { useState } from 'react';
 
 const styles = css`
   .timeline {
@@ -33,9 +36,20 @@ const styles = css`
   }
 `;
 
-// TODO
-// コンポーネント分割
 const Timeline = () => {
+  // 更新関数setPostsに格納 → 状態変数postsに値が流れ込む
+  // postsからmapで値を出力する
+  const [posts, setPosts] = useState([]);
+
+  // db: Initialized FireStore
+  // "posts": Colleciton Name
+  // Reference: https://console.firebase.google.com/u/0/project/twitter-app-9df5c/firestore/data/~2Fposts~2FS3uioaCzC2VKBiF7azSK?hl=ja
+  const postData = collection(db, 'posts');
+
+  getDocs(postData).then((querySnapshot) => {
+    setPosts(querySnapshot.docs.map((doc) => doc.data()));
+  });
+
   return (
     <>
       <style jsx>{styles}</style>
@@ -44,14 +58,19 @@ const Timeline = () => {
           <h2 className='timeline-header-text'>HOME</h2>
         </div>
         <TweetBox />
-        <Post
-          displayName='Koala'
-          username='Koala Engineer'
-          verified={true}
-          text='First Tweet'
-          avatar='https://source.unsplash.com/random'
-          image='https://source.unsplash.com/random'
-        />
+        {posts.map((post) => {
+          return (
+            <Post
+              displayName={post.displayName}
+              username={post.username}
+              verified={post.verified}
+              text={post.text}
+              avatar={post.avatar}
+              image={post.image}
+            />
+          );
+        })}
+        ;
       </div>
     </>
   );
