@@ -36,7 +36,8 @@ const styles = css`
     font-weight: 900;
     border: none;
     border-radius: 30px;
-    height: 50px;
+    padding: 12px 24px;
+    width: 100%;
     margin-top: 20px;
     transition: all .3s;
   }
