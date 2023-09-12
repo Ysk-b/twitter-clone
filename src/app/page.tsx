@@ -1,6 +1,6 @@
 import React from 'react';
 import SideBar from './components/Organisms/SideBar';
-import { Timeline } from '@mui/icons-material';
+import Timeline from './components/Organisms/Timeline';
 
 const App = () => {
   return (
