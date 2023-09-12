@@ -1,7 +1,7 @@
 'use client';
 
 import css from 'styled-jsx/css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Post from '../Molecules/Post';
 import TweetBox from '../Molecules/TweetBox';
@@ -43,13 +43,15 @@ const Timeline = () => {
   // postsからmapで値を出力する
   const [posts, setPosts] = useState<PostProps[]>([]);
 
-  // db: Initialized FireStore
-  // "posts": Colleciton Name
-  const postData = collection(db, 'posts');
-
-  getDocs(postData).then((querySnapshot) => {
-    setPosts(querySnapshot.docs.map((doc) => doc.data()));
-  });
+  // Make it render once ONLY when it's mounted.
+  useEffect(() => {
+    // db: Initialized FireStore
+    // "posts": Colleciton Name
+    const postData = collection(db, 'posts');
+    getDocs(postData).then((querySnapshot) => {
+      setPosts(querySnapshot.docs.map((doc) => doc.data()));
+    });
+  }, []);
 
   return (
     <>
