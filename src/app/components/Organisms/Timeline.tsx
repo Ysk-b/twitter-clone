@@ -5,6 +5,7 @@ import TweetBox from '../Molecules/TweetBox';
 
 import css from 'styled-jsx/css';
 import theme from '~/app/styles/theme';
+import Post from '../Molecules/Post';
 
 const styles = css`
   .timeline {
@@ -42,6 +43,7 @@ const Timeline = () => {
           <h2 className='timeline-header-text'>HOME</h2>
         </div>
         <TweetBox />
+        <Post />
       </div>
     </>
   );
