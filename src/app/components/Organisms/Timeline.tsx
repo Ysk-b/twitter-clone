@@ -10,7 +10,7 @@ import { PostProps } from '~/app/types/types';
 import theme from '~/app/styles/theme';
 
 import db from '~/app/data/firebase';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, onSnapshot } from 'firebase/firestore';
 
 const styles = css`
   .timeline {
@@ -50,7 +50,12 @@ const Timeline = () => {
     const postData = collection(db, 'posts');
     const modPostData = query(postData, orderBy("timestamp", "desc"));
 
-    getDocs(modPostData).then((querySnapshot) => {
+    // getDocs(modPostData).then((querySnapshot) => {
+    //   setPosts(querySnapshot.docs.map((doc) => doc.data()));
+    // });
+
+    // リアルタイムでデータ取得
+    onSnapshot(modPostData, (querySnapshot) => {
       setPosts(querySnapshot.docs.map((doc) => doc.data()));
     });
   }, []);
