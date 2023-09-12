@@ -1,7 +1,9 @@
-"use client"
+'use client';
 
 import { Search } from '@mui/icons-material';
 import React from 'react';
+
+import { TwitterTimelineEmbed, TwitterShareButton, TwitterTweetEmbed } from 'react-twitter-embed';
 
 import css from 'styled-jsx/css';
 import theme from '~/app/styles/theme';
@@ -53,9 +55,16 @@ const Widgets = () => {
         </div>
         <div className='widgets-container'>
           <h2 className='widgets-container-text'>What is in your mind?</h2>
-          {/* <TwitterTweetEmbed />
-          <TwitterTimelineEmbed />
-          <TwitterShareButton /> */}
+          <TwitterTweetEmbed tweetId={'123456789'} />
+          <TwitterTimelineEmbed
+            sourceType='profile'
+            screenName='Koala_Engineer'
+            options={{ height: 400 }}
+          />
+          <TwitterShareButton
+            url={'https://twitter.com/Koala_Engineer'}
+            options={{ text: '#React学習中', via: 'Koala_Engineer' }}
+          />
         </div>
       </div>
     </>

@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^9.0.0",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "react-twitter-embed": "^4.0.4"
   }
 }
