@@ -10,7 +10,7 @@ import { PostProps } from '~/app/types/types';
 import theme from '~/app/styles/theme';
 
 import db from '~/app/data/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy } from 'firebase/firestore';
 
 const styles = css`
   .timeline {
@@ -48,7 +48,9 @@ const Timeline = () => {
     // db: Initialized FireStore
     // "posts": Colleciton Name
     const postData = collection(db, 'posts');
-    getDocs(postData).then((querySnapshot) => {
+    const modPostData = query(postData, orderBy("timestamp", "desc"));
+
+    getDocs(modPostData).then((querySnapshot) => {
       setPosts(querySnapshot.docs.map((doc) => doc.data()));
     });
   }, []);
