@@ -9,6 +9,7 @@ import { Avatar } from '@mui/material';
 import React from 'react';
 import css from 'styled-jsx/css';
 import theme from '~/app/styles/theme';
+import { PostProps } from '~/app/types/types';
 
 const styles = css`
   .post {
@@ -47,15 +48,6 @@ const styles = css`
     color: ${theme.colors.primary};
   }
 `;
-
-interface PostProps {
-  displayName: string;
-  username: string;
-  verified: boolean;
-  text: string;
-  image: string;
-  avatar: string;
-}
 
 const Post = ({ displayName, username, verified, text, image, avatar }: PostProps) => {
   return (

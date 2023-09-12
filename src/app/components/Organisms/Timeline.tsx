@@ -1,14 +1,16 @@
 'use client';
 
+import css from 'styled-jsx/css';
+import { useState } from 'react';
+
 import Post from '../Molecules/Post';
 import TweetBox from '../Molecules/TweetBox';
 
-import css from 'styled-jsx/css';
+import { PostProps } from '~/app/types/types';
 import theme from '~/app/styles/theme';
 
 import db from '~/app/data/firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import { useState } from 'react';
 
 const styles = css`
   .timeline {
@@ -39,11 +41,10 @@ const styles = css`
 const Timeline = () => {
   // 更新関数setPostsに格納 → 状態変数postsに値が流れ込む
   // postsからmapで値を出力する
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<PostProps[]>([]);
 
   // db: Initialized FireStore
   // "posts": Colleciton Name
-  // Reference: https://console.firebase.google.com/u/0/project/twitter-app-9df5c/firestore/data/~2Fposts~2FS3uioaCzC2VKBiF7azSK?hl=ja
   const postData = collection(db, 'posts');
 
   getDocs(postData).then((querySnapshot) => {
@@ -61,6 +62,7 @@ const Timeline = () => {
         {posts.map((post) => {
           return (
             <Post
+              key={post.displayName}
               displayName={post.displayName}
               username={post.username}
               verified={post.verified}
