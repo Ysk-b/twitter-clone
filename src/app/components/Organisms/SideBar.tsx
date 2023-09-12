@@ -53,7 +53,7 @@ const SideBar = () => {
       <style jsx>{styles}</style>
       <div className='sidebar'>
         <TwitterIcon className='sidebar-twitter-icon' />
-        <SidebarOption text='ホーム' Icon={HomeIcon} />
+        <SidebarOption text='ホーム' Icon={HomeIcon} active/>
         <SidebarOption text='話題を検索' Icon={SearchIcon} />
         <SidebarOption text='通知' Icon={NotificationsNoneIcon} />
         <SidebarOption text='メッセージ' Icon={MailOutlineIcon} />
