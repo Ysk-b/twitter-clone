@@ -19,9 +19,9 @@ import theme from '~/app/styles/theme';
 const styles = css`
   .sidebar {
     border-right: 1px solid ${theme.colors.bg};
-    max-width: 250px;
     margin-top: 20px;
     padding: 0 20px;
+    flex: .35;
   }
 
   .sidebar > :global(.sidebar-twitter-icon) {
@@ -39,7 +39,7 @@ const styles = css`
     padding: 12px 24px;
     width: 100%;
     margin-top: 20px;
-    transition: all .3s;
+    transition: all 0.3s;
   }
 
   .sidebar > :global(.sidebar-btn:hover) {
@@ -53,7 +53,7 @@ const SideBar = () => {
       <style jsx>{styles}</style>
       <div className='sidebar'>
         <TwitterIcon className='sidebar-twitter-icon' />
-        <SidebarOption text='ホーム' Icon={HomeIcon} />
+        <SidebarOption text='ホーム' Icon={HomeIcon} active/>
         <SidebarOption text='話題を検索' Icon={SearchIcon} />
         <SidebarOption text='通知' Icon={NotificationsNoneIcon} />
         <SidebarOption text='メッセージ' Icon={MailOutlineIcon} />

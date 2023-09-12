@@ -1,5 +1,6 @@
 import css from 'styled-jsx/css';
 import theme from '~/app/styles/theme';
+import classNames from 'classnames';
 
 const styles = css`
   .sidebar-option-list {
@@ -8,6 +9,10 @@ const styles = css`
     align-items: center;
     cursor: pointer;
     transition: all 0.3s;
+  }
+
+  .sidebar-option-list--active {
+    color: ${theme.colors.primary};
   }
 
   .sidebar-option-list + .sidebar-option-list {
@@ -24,22 +29,19 @@ const styles = css`
     margin-right: 20px;
     font-weight: 700;
   }
-
-  .sidebar-option-list.active {
-    color: ${theme.colors.primary};
-  }
 `;
 
 interface SidebarOptionProps {
   text: string;
   Icon: any; // FIX ME: 適切な型定義が必要
+  active?: boolean;
 }
 
-const SidebarOption = ({ text, Icon }:SidebarOptionProps) => {
+const SidebarOption = ({ text, Icon, active }: SidebarOptionProps) => {
   return (
     <>
       <style jsx>{styles}</style>
-      <div className='sidebar-option-list'>
+      <div className={classNames('sidebar-option-list', {'sidebar-option-list--active': active})}>
         <Icon className='sidebar-option-list-icon' />
         <h2 className='sidebar-option-list-text'>{text}</h2>
       </div>

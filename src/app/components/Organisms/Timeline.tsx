@@ -1,16 +1,22 @@
 'use client';
 
-import React from 'react';
+import css from 'styled-jsx/css';
+import { useEffect, useState } from 'react';
+
+import Post from '../Molecules/Post';
 import TweetBox from '../Molecules/TweetBox';
 
-import css from 'styled-jsx/css';
+import { PostProps } from '~/app/types/types';
 import theme from '~/app/styles/theme';
-import Post from '../Molecules/Post';
+
+import db from '~/app/data/firebase';
+import { collection, getDocs, query, orderBy, onSnapshot } from 'firebase/firestore';
 
 const styles = css`
   .timeline {
     border-right: 1px solid ${theme.colors.bg};
     overflow-y: scroll;
+    flex: 1;
   }
 
   .timeline::-webkit-scrollbar {
@@ -32,9 +38,28 @@ const styles = css`
   }
 `;
 
-// TODO
-// コンポーネント分割
 const Timeline = () => {
+  // 更新関数setPostsに格納 → 状態変数postsに値が流れ込む
+  // postsからmapで値を出力する
+  const [posts, setPosts] = useState<PostProps[]>([]);
+
+  // Make it render once ONLY when it's mounted.
+  useEffect(() => {
+    // db: Initialized FireStore
+    // "posts": Colleciton Name
+    const postData = collection(db, 'posts');
+    const modPostData = query(postData, orderBy("timestamp", "desc"));
+
+    // getDocs(modPostData).then((querySnapshot) => {
+    //   setPosts(querySnapshot.docs.map((doc) => doc.data()));
+    // });
+
+    // リアルタイムでデータ取得
+    onSnapshot(modPostData, (querySnapshot) => {
+      setPosts(querySnapshot.docs.map((doc) => doc.data()));
+    });
+  }, []);
+
   return (
     <>
       <style jsx>{styles}</style>
@@ -43,7 +68,20 @@ const Timeline = () => {
           <h2 className='timeline-header-text'>HOME</h2>
         </div>
         <TweetBox />
-        <Post />
+        {posts.map((post) => {
+          return (
+            <Post
+              key={post.displayName}
+              displayName={post.displayName}
+              username={post.username}
+              verified={post.verified}
+              text={post.text}
+              avatar={post.avatar}
+              image={post.image}
+            />
+          );
+        })}
+        ;
       </div>
     </>
   );

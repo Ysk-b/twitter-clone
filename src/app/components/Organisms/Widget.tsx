@@ -10,7 +10,7 @@ import theme from '~/app/styles/theme';
 
 const styles = css`
   .widgets {
-    flex: 0.35;
+    flex: .35;
   }
 
   .widgets-search {
