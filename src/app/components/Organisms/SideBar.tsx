@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import SidebarOption from '../Molecules/SidebarOption';
-import css from 'styled-jsx/css'
+import css from 'styled-jsx/css';
 
 import TwitterIcon from '@mui/icons-material/Twitter';
 import HomeIcon from '@mui/icons-material/Home';
@@ -12,10 +14,37 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Button } from '@mui/material';
+import theme from '~/app/styles/theme';
 
 const styles = css`
+  .sidebar {
+    border-right: 1px solid ${theme.colors.bg};
+    max-width: 250px;
+    margin-top: 20px;
+    padding: 0 20px;
+  }
 
-`
+  .sidebar > :global(.sidebar-twitter-icon) {
+    color: ${theme.colors.primary};
+    font-size: 30px;
+    margin: 0 0 20px 20px;
+  }
+
+  .sidebar > :global(.sidebar-btn) {
+    background-color: ${theme.colors.primary};
+    color: #fff;
+    font-weight: 900;
+    border: none;
+    border-radius: 30px;
+    height: 50px;
+    margin-top: 20px;
+    transition: all .3s;
+  }
+
+  .sidebar > :global(.sidebar-btn:hover) {
+    opacity: 0.7;
+  }
+`;
 
 const SideBar = () => {
   return (
