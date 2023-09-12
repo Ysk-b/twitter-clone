@@ -1,4 +1,3 @@
-import React from 'react';
 import css from 'styled-jsx/css';
 import theme from '~/app/styles/theme';
 
@@ -31,7 +30,12 @@ const styles = css`
   }
 `;
 
-const SidebarOption = ({ text, Icon }) => {
+interface SidebarOptionProps {
+  text: string;
+  Icon: any; // FIX ME: 適切な型定義が必要
+}
+
+const SidebarOption = ({ text, Icon }:SidebarOptionProps) => {
   return (
     <>
       <style jsx>{styles}</style>
