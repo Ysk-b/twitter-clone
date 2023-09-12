@@ -22,6 +22,7 @@ const styles = css`
     max-width: 250px;
     margin-top: 20px;
     padding: 0 20px;
+    flex: .35;
   }
 
   .sidebar > :global(.sidebar-twitter-icon) {
@@ -39,7 +40,7 @@ const styles = css`
     padding: 12px 24px;
     width: 100%;
     margin-top: 20px;
-    transition: all .3s;
+    transition: all 0.3s;
   }
 
   .sidebar > :global(.sidebar-btn:hover) {

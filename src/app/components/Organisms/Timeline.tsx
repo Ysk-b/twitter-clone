@@ -11,6 +11,7 @@ const styles = css`
   .timeline {
     border-right: 1px solid ${theme.colors.bg};
     overflow-y: scroll;
+    flex: 1;
   }
 
   .timeline::-webkit-scrollbar {
@@ -43,7 +44,14 @@ const Timeline = () => {
           <h2 className='timeline-header-text'>HOME</h2>
         </div>
         <TweetBox />
-        <Post />
+        <Post
+          displayName='Koala'
+          username='Koala Engineer'
+          verified={true}
+          text='First Tweet'
+          avatar='https://source.unsplash.com/random'
+          image='https://source.unsplash.com/random'
+        />
       </div>
     </>
   );

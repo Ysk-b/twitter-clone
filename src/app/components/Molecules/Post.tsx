@@ -48,29 +48,38 @@ const styles = css`
   }
 `;
 
-const Post = () => {
+interface PostProps {
+  displayName: string;
+  username: string;
+  verified: boolean;
+  text: string;
+  image: string;
+  avatar: string;
+}
+
+const Post = ({ displayName, username, verified, text, image, avatar }: PostProps) => {
   return (
     <>
       <style jsx>{styles}</style>
       <div className='post'>
         <div className='post-avatar'>
-          <Avatar />
+          <Avatar src={avatar} />
         </div>
         <div className='post-body'>
           <div className='post-body-header'>
             <div className='post-body-header-text'>
               <h3 className='post-body-header-text-heading'>
+                {displayName}
                 <span className='post-body-header-text-heading-icon'>
-                  <VerifiedUser />
-                  @username
+                  <VerifiedUser />@{username}
                 </span>
               </h3>
             </div>
             <div className='post-body-header-description'>
-              <p className='post-body-header-description-text'>content</p>
+              <p className='post-body-header-description-text'>{text}</p>
             </div>
           </div>
-          <img className='post-body-image' src='' />
+          <img className='post-body-image' src={image} />
           <div className='post-body-footer'>
             <ChatBubbleOutline fontSize='small' />
             <Repeat fontSize='small' />
