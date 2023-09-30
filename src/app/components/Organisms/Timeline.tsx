@@ -48,7 +48,7 @@ const Timeline = () => {
     // db: Initialized FireStore
     // "posts": Colleciton Name
     const postData = collection(db, 'posts');
-    const modPostData = query(postData, orderBy("timestamp", "desc"));
+    const modPostData = query(postData, orderBy('timestamp', 'desc'));
 
     // getDocs(modPostData).then((querySnapshot) => {
     //   setPosts(querySnapshot.docs.map((doc) => doc.data()));
